@@ -119,7 +119,10 @@ void handleWord(std::string* file, std::string word) {
     }
     handleOtherWord(file, otherWord);
 }
-
+/*
+ * This function will remove all the comments and blank lines
+ * called handleWord() to separate words (separated by a whitespace) into tokens.
+ */
 std::string formatFile(std::string fileString) {
     std::string fileWithNoComment = "";
     bool isComment = false;
@@ -157,6 +160,7 @@ std::string formatFile(std::string fileString) {
     return formattedFile;
 }
 
+
 void cleanupFile(std::string inputFileName, std::string outputFileName) {
     try {
         std::ifstream inputFile(inputFileName);
@@ -176,15 +180,14 @@ void cleanupFile(std::string inputFileName, std::string outputFileName) {
             stringFile += line;
         }
         
-        //close the file 
-        inputFile.close();
-
         std::string formattedFile = formatFile(stringFile);
         outputFile << formattedFile;
-
+        
+        //close the file 
+        inputFile.close();
         outputFile.close();
-
-        std::cout << " \t ************* \n\n";
+        
+        std::cout << "============================================================ \n\n";
         std::cout << "Content of " << outputFileName << "\n" << std::endl;
         //then display the content of the new file newdata.txt
         displayFile(outputFileName);
@@ -192,5 +195,4 @@ void cleanupFile(std::string inputFileName, std::string outputFileName) {
     catch (std::exception const& e) {
         std::cout << "An error occurred: " << e.what() << std::endl;
     }
-    
 }

@@ -2,13 +2,13 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include "unistd.h"
 #include "project.h"
 
 /**
  * @brief Main Function
  * *Everything expected to happen will happen here and perform with abstraction in other files
  */
+
 
 int main() {
     /*
@@ -30,11 +30,23 @@ int main() {
     std::cout << " \t ************* \n\n";
     std::cout << "START COMPLING PROGRAM: \n";
     
-    //create a little delay effect with sleep
-    sleep(1);
+    bool fileIsValid = false;
+    
     std::cout << "\n";
-    validateFile(outputFileName);
-    std::cout << "DONE !!!" << std::endl;
+    std::string originalFile = filename;
+    fileIsValid = validateFile(originalFile, outputFileName);
+    std::cout << "\n";
 
+    /*
+        ? Part 3: generate C++ code from the output file if no error occurred
+    */
+
+   std::string abstractFile = retrieveAbstractFile();
+   if (fileIsValid) {
+       std::cout << "Generating C++ code from abstract file: \n";
+       codeGenerate(abstractFile);
+       std::cout << "Compilation done with no error. \n";
+   }
+   
     return 0;
 }

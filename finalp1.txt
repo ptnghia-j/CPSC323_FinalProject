@@ -3,14 +3,18 @@ program  f2021;
    Of an expression **
 var
   ** declare variables **
-  a1 ,       b2a ,       wc, ba12    : integer ;
+  a1 ,       b2a ,       wc, ba12, fb    : integer ;
 begin
-     a1               = 3 ;
-     b2a =          4 ;
-     wc           =  5    ;
-  write(wc );  ** display wc **
-
+     a1     ** comment invader**         = 3 ;
+     b2a =          -4 ;
+     wc           =  +5    ;
+     fa = + 8;
+  write (wc );  ** display wc ** ** dummy comment**
+**yup another one here**
      ** compute the value of the expression **
-     ba12 = a1 * ( b2a + 2 * wc)          ;
-     write ( "value=",          ba12   ) ;  ** print the value of ba12 **
+     ba12 = a1 *   (b2a + 2 * wc)          ;
+     write  ("value=",          ba12   ) ;  ** print the value of ba12 **
 end.
+
+
+** and yet another one right here too**

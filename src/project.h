@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <utility>
 
 /*
     Function headers
 */
+
 void displayFile(std::string filename);
 std::string formatFile(std::string fileString);
 void handleKeyWord(std::string* file, std::string word);
@@ -17,7 +20,6 @@ void cleanupFile(std::string inputFileName, std::string outputFileName);
 class Stack {
 	//two private fields: stack and counter
 	private: 
-    	
         std::string* stack;
     	int counter, maxSize;
         float threshold = 0.5;
@@ -34,7 +36,7 @@ class Stack {
         void resize();
 
 	/*
-    Customized methods to check elements in the stack
+    * Customized methods to check elements in the stack
     - printStack(): print the stack with customized output lines
     - size(): inquire the size of the stack
     */
@@ -43,4 +45,11 @@ class Stack {
     int size();
 };
 
-void validateFile(std::string filename);
+
+bool validateFile(std::string originalFile, std::string outputFile);
+bool routine_0 (std::string program);
+void exceptionRoutine_1(int* currentIndex, std::pair<int, int> errPos);
+
+//void codeGenerate()
+std::string retrieveAbstractFile();
+void codeGenerate(std::string abstractFileData);

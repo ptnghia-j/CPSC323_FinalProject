@@ -16,7 +16,7 @@ Stack::~Stack() {
     delete[] stack;
 }
 
-//clear the stack by reseting the counter
+//clear the stack by reseting the counter to 0
 void Stack::clearStack() {
     counter = 0;
 }
@@ -56,8 +56,8 @@ std::string Stack::pop() {
         std::cout << "The stack is empty, nothing to pop" << std::endl;
         return 0;
     }
-
 }
+
 /*
 Provide a resize method to increase the size of the stack when it is half way full
 For simplicity, increase its size by 2 each time it reaches the threshold
