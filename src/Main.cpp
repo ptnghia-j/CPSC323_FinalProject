@@ -8,7 +8,9 @@
  * @brief Main Function
  * *Everything expected to happen will happen here and perform with abstraction in other files
  */
-
+//will be declared and computed in part2.cpp file
+extern int errorCount;
+extern int warningCount;
 
 int main() {
     /*
@@ -16,9 +18,13 @@ int main() {
         ? tokenize all tokens and output to [outputFileName]
     */
     std::string filename = "finalp1.txt";
+
+    std::cout << "\n\n";
+    std::cout << "START COMPLING FILE: " << filename << std::endl;
+    std::cout << "======================================================" << std::endl;
     //display input file
-    std::cout << "Content of finalp1.txt: \n" << std::endl;
-    displayFile(filename);
+    // std::cout << "Content of finalp1.txt: \n" << std::endl;
+    // displayFile(filename);
 
     //call function to clean up file based on rules and output to an output file
     std::string outputFileName = "finalp2.txt";
@@ -28,7 +34,6 @@ int main() {
         ? Part 2: Validate the file [outputFileName] just written into and produce any error occurred
     */
     std::cout << " \t ************* \n\n";
-    std::cout << "START COMPLING PROGRAM: \n";
     
     bool fileIsValid = false;
     
@@ -43,10 +48,21 @@ int main() {
 
    std::string abstractFile = retrieveAbstractFile();
    if (fileIsValid) {
-       std::cout << "Generating C++ code from abstract file: \n";
+       std::cout << "Generating C++ file \n";
        codeGenerate(abstractFile);
-       std::cout << "Compilation done with no error. \n";
    }
+
+   if (errorCount == 0) {
+       std::cout << "Compilation done successfully with no error.\n";
+       if(warningCount > 0) {
+           std::cout << "Generated: " << warningCount << " warning(s).\n";
+       }
+   }
+   else {
+       std::cout << "Compilation done with " << errorCount << " error(s) and " << warningCount << " warning(s) \n";
+   }
+
+   std::cout << " \t ************* \n\n";
    
     return 0;
 }

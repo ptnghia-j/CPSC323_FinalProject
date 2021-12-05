@@ -1,12 +1,9 @@
-program f2021 ;
-var
-a1 , b2a , wc , ba12 , fb : integer ;
-begin
-a1 = 3 ;
+progran f2021 ;
+varn a1 , f2f , f2f , b2a , wc , ba12 : integer ;
+began a1 = 3 ;
 b2a =  - 4 ;
 wc =  + 5 ;
-fa =  + 8 ;
 write ( wc ) ;
-ba12 = a1 * ( b2a + 2 * wc ) ;
+ba12 = a1 * b2a + 2 * wc ) ;
 write ( "value=" , ba12 ) ;
-end.
+end 

@@ -2,12 +2,26 @@
 #include <fstream>
 #include "project.h"
 
+/**
+ * @brief 
+ * * This file contains a simple function that generate the equivalent C++ code from the given original source code 
+ * * in Pascal language, format follows a typical C++ formatting style, indentation (a tab) here is 4 spaces.
+ * * There will be a space between each token to ease the generating process and enhance redability
+ * 
+ * * Even though print() in Pascal does not break into a new line, this C++ translation code will add a new line for each
+ * * cout statement, return 0 is optional but is appended to the end of main() in this output
+ * 
+ * * Some initial settings are hard coded, and is considered a blueprint part of the new grammar rules, in an assumption 
+ * * that they are the equivalence counterpart of the original Pascal code
+ * 
+ * * Codes components that are supported by the original Pascal code are supposed to be supported in the translation to C++ here
+ */
+
 /*
-If there are no ERRORS, translate the program to a high-level language: C++, C#, Python, or Java. 
-Run the program to display the output. This is the C++ version of the program in part I
+If there are no ERRORS, translate the program to a high-level language: C++
 * The transformed Grammar based on the original grammar
 <prog> ->#include <iostream> <new-line> using namespace std; <type> main() { <dec-list> <stat-list> return 0;}
-<new-line> ->“\n”                                   
+<new-line> -> “\n”                                   
 <type> -> int
 <dec-list> -> <type> <dec>;
 <dec> -> <identifier>,<dec>|<identifier>
@@ -21,7 +35,7 @@ Run the program to display the output. This is the C++ version of the program in
 <term> -> <term>*<factor>|<term>/<factor>|<factor>
 <factor> -> <identifier>|<number>|(<expr>)
 <number> -> <sign><digit>{<digit>}
-<sign> -> +|-| λ
+<sign> -> +|-|λ
 <digit> -> 0|1|…|9
 <letter> -> a|b|c|d|w|f
 */
@@ -122,8 +136,6 @@ void codeGenerate(std::string abstractFileData) {
         targetCodeOutput.close(); 
     }
     catch(std::runtime_error &e) {
-        std::cout << e.what() << std::endl;
+        std::cout << "Error: " << e.what() << std::endl;
     }
-    
-
 }

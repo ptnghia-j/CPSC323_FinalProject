@@ -47,8 +47,15 @@ class Stack {
 
 
 bool validateFile(std::string originalFile, std::string outputFile);
-bool routine_0 (std::string program);
-void exceptionRoutine_1(int* currentIndex, std::pair<int, int> errPos);
+bool routine_0 (std::string program, std::string originalFile);
+void exceptionRoutine_1(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_2(std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
+void exceptionRoutine_3(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
+void exceptionRoutine_4(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
+void exceptionRoutine_5(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
+void exceptionRoutine_6(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_7(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
+void exceptionRoutine_8(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
 
 //void codeGenerate()
 std::string retrieveAbstractFile();

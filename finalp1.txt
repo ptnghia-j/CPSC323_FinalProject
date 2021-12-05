@@ -1,20 +1,19 @@
-program  f2021;
+  progran f2021;
 ** This program computes and prints the value
    Of an expression **
-var
+varn
   ** declare variables **
-  a1 ,       b2a ,       wc, ba12, fb    : integer ;
-begin
-     a1     ** comment invader**         = 3 ;
+  a1 ,  f2f, f2f,   b2a ,       wc, ba12   :  integer;
+began
+     a1     ** comment invader**         = 3; 
      b2a =          -4 ;
      wc           =  +5    ;
-     fa = + 8;
-  write (wc );  ** display wc ** ** dummy comment**
+  write(wc );  ** display wc ** ** dummy comment**
 **yup another one here**
      ** compute the value of the expression **
-     ba12 = a1 *   (b2a + 2 * wc)          ;
+     ba12 = a1 *   b2a + 2 * wc) ;         
      write  ("value=",          ba12   ) ;  ** print the value of ba12 **
-end.
+end
 
 
 ** and yet another one right here too**

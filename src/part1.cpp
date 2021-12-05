@@ -1,3 +1,10 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <vector>
+#include "project.h"
+
 //-------------------------------------------------------------------------------------------------------------
 // Given the file "finalp1.txt":
 //      Apply the following rules to this file and copy the new version in file “finalp2.txt”
@@ -7,13 +14,6 @@
 //      c.	Extra spaces in each line must be removed, 
 //          Leave one space before and one after each token (example: line 8: a1 = 3 ; )
 //-----------------------------------------------------------------------------------------------------------------
-
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <vector>
-#include "project.h"
 
 std::string keywords[6] = {"program", "begin", "end.", "var", "integer", "write"};
 
@@ -59,7 +59,9 @@ void handleKeyWord(std::string* file, std::string word){
 
 void handleOtherWord(std::string* file, std::string otherWord) {
     std::string word = otherWord;
+
     for (int i = 0; i < word.length(); i++) {
+       
         if (word[i] == '"') {
             *file += word.substr(i,1);
             i++;
@@ -84,11 +86,35 @@ void handleOtherWord(std::string* file, std::string otherWord) {
             *file += " " + word.substr(i,1) + "\n";
         }
         else {
+            /*
+            * Keywords are probably misspelled, so we need to check them here
+            * the indicator here is that it contains characters that are not a part of an identifier
+            * that is a character is not a, b, c, d, w, f, and 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+            * also note that this keywords misspelled checking will also exclude all operators and punctuation
+            * otherwise it should be an identifier
+            */
+
+            for (int j = 0; j < word.length(); j++) {
+                //basically also case mentioned above and identifier are excluded from checking for a typo in keywords
+                if (word[j] != 'a' && word[j] != 'b' && word[j] != 'c' && word[j] != 'd' && word[j] != 'w' && word[j] != 'f' 
+                    && !isDigit(word[j]) && word[j] != '"' && word[j] != ',' && word[j] != '+' && word[j] != '-' && word[j] != '*'
+                    && word[j] != '/' && word[j] != '=' && word[j] != ':' && word[j] != '(' && word[j] != ')' && word[j] != ';') {
+
+                    *file += word + " ";
+                    return;
+                }
+            }
+
             *file += word.substr(i,1);
         }
     }
 }
 
+bool containsSymbol(std::string word) {
+    return word.find(":") != std::string::npos|| word.find("(") != std::string::npos 
+        || word.find(")") != std::string::npos || word.find(";") != std::string::npos
+        || word.find("\"") != std::string::npos || word.find(",") != std::string::npos;
+}
 
 void handleWord(std::string* file, std::string word) {
     std::string keyword;
@@ -98,7 +124,7 @@ void handleWord(std::string* file, std::string word) {
         The concern here is that write a keyword may involve in a longer word with it inside
         */
         size_t found = word.find(keywords[i]);
-        if (found != std::string::npos) {
+        if (found != std::string::npos && containsSymbol(word)) {
             if (found == 0) {
                 keyword = word.substr(found, keywords[i].length());
                 handleKeyWord(file, keyword);
@@ -156,10 +182,8 @@ std::string formatFile(std::string fileString) {
     while(stream >> word) {
         handleWord(&formattedFile, word);
     }
-          
     return formattedFile;
 }
-
 
 void cleanupFile(std::string inputFileName, std::string outputFileName) {
     try {
