@@ -53,10 +53,14 @@ void exceptionRoutine_2(std::pair<int, int> errPos, std::string originalFile, bo
 void exceptionRoutine_3(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
 void exceptionRoutine_4(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
 void exceptionRoutine_5(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
-void exceptionRoutine_6(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_6(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, int lastTokenLength);
 void exceptionRoutine_7(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, bool keywordMisspelled);
-void exceptionRoutine_8(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_8(int* currentIndex, std::pair<int, int> errPos, std::string originalFile, int lastTokenLength);
+void exceptionRoutine_9(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_10(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_11(int* currentIndex, std::pair<int, int> errPos, std::string originalFile);
+void exceptionRoutine_12(std::pair<int, int> errPos, std::string originalFile);
 
-//void codeGenerate()
+void codeGenerate(std::string abstractFileData);
 std::string retrieveAbstractFile();
 void codeGenerate(std::string abstractFileData);

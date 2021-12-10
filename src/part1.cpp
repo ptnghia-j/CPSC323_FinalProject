@@ -39,15 +39,17 @@ void displayFile(std::string filename) {
 void handleKeyWord(std::string* file, std::string word){
     switch(word[0]) {
         case 'i':
-            *file += word;
+            *file += word + " ";
             break;
-        case 'p':    
+        case 'p':     
+            *file += word + " ";
+            break;
         case 'w':
             *file += word + " ";
             break;
         case 'v':
         case 'b':
-            *file += word + "\n";
+             *file += word + "\n";
             break;
         case 'e':
             *file += word;
@@ -57,57 +59,81 @@ void handleKeyWord(std::string* file, std::string word){
     }
 }
 
+
+bool seenQuote = false;
 void handleOtherWord(std::string* file, std::string otherWord) {
     std::string word = otherWord;
+    //std::cout << "DEBUG: " << word << std::endl;
+    
+    size_t found = -1;
+    
+    if(!seenQuote) {
+        
+        found = word.find("+") != std::string::npos ? word.find("+") : found;
+        found = word.find("-") != std::string::npos ? word.find("-") : found;
+        found = word.find("*") != std::string::npos ? word.find("*") : found;
+        found = word.find("/") != std::string::npos ? word.find("/") : found;
+        found = word.find("=") != std::string::npos ? word.find("=") : found;
+        found = word.find("(") != std::string::npos ? word.find("(") : found;
+        found = word.find(",") != std::string::npos ? word.find(",") : found;
+        found = word.find(")") != std::string::npos ? word.find(")") : found;
+        found = word.find(";") != std::string::npos ? word.find(";") : found;
+    }
+    
+    if (word == "") {
+        //std::cout << "empty word encountered" << std::endl;
+        return;
+    }
+    std::string word_1 ;
+    std::string word_2;
+    if(found != std::string::npos && word.length() > 1) {
+         seenQuote = word.find("\"") != std::string::npos ? true : false;
 
-    for (int i = 0; i < word.length(); i++) {
+        if(found != 0) {
+            word_1 = word.substr(0,found);
+            word_2 = word.substr(found);
+        }  
+        else {
+           word_1 = word.substr(0,1);
+           word_2 = word.substr(1);
+        }  
        
-        if (word[i] == '"') {
+       handleOtherWord(file, word_1);
+       handleOtherWord(file, word_2);
+       return;
+    }
+   
+    int i = 1;
+    if (word[0] == '"') {
+        *file += word.substr(0,1);
+       
+        //add everything between "" to the formattedFile
+        while(word[i] != '"') {
             *file += word.substr(i,1);
             i++;
-            //add everything between "" to the formattedFile
-            while(word[i] != '"') {
-                *file += word.substr(i,1);
-                i++;
-            }
-            
-            *file += word.substr(i,1);
         }
-        else if (word[i] == ',' || word[i] == '+' || word[i] == '-' || word[i] == '*' || word[i] == '/' || word[i] == '=' || word[i] == ':') {
-            *file += " " + word.substr(i,1) + " ";
-        }
-        else if (word[i] == '(') {
-            *file += word.substr(i,1) + " ";
-        }
-        else if (word[i] == ')') {
-            *file += " " + word.substr(i,1);
-        }
-        else if (word[i] == ';') {
-            *file += " " + word.substr(i,1) + "\n";
-        }
-        else {
-            /*
-            * Keywords are probably misspelled, so we need to check them here
-            * the indicator here is that it contains characters that are not a part of an identifier
-            * that is a character is not a, b, c, d, w, f, and 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-            * also note that this keywords misspelled checking will also exclude all operators and punctuation
-            * otherwise it should be an identifier
-            */
-
-            for (int j = 0; j < word.length(); j++) {
-                //basically also case mentioned above and identifier are excluded from checking for a typo in keywords
-                if (word[j] != 'a' && word[j] != 'b' && word[j] != 'c' && word[j] != 'd' && word[j] != 'w' && word[j] != 'f' 
-                    && !isDigit(word[j]) && word[j] != '"' && word[j] != ',' && word[j] != '+' && word[j] != '-' && word[j] != '*'
-                    && word[j] != '/' && word[j] != '=' && word[j] != ':' && word[j] != '(' && word[j] != ')' && word[j] != ';') {
-
-                    *file += word + " ";
-                    return;
-                }
-            }
-
-            *file += word.substr(i,1);
-        }
+        
+        *file += word.substr(i,1) + " ";
+        seenQuote = false;
+        handleOtherWord(file,word.substr(i+1));
     }
+    
+    else if (word == "," || word == "+" || word == "-" || word == "*" || word == "/" || word == "=" || word == ":") {
+        *file += word + " ";
+    }
+    else if (word == "(") {
+        *file += word + " ";
+    }
+    else if (word == ")") {
+        *file += word + " ";
+    }
+    else if (word == ";") {
+        *file += word + "\n";
+    }
+    else {
+        *file += word + " ";
+    }
+    return;
 }
 
 bool containsSymbol(std::string word) {
@@ -120,11 +146,15 @@ void handleWord(std::string* file, std::string word) {
     std::string keyword;
     std::string otherWord = word;
     for (int i = 0; i < 6; i++) {
-        /*
-        The concern here is that write a keyword may involve in a longer word with it inside
-        */
+        
+        //Keyword "write" may involve in a longer word with it inside
+       if (word == keywords[i]) {
+              handleKeyWord(file, word);
+              return;
+       }
+
         size_t found = word.find(keywords[i]);
-        if (found != std::string::npos && containsSymbol(word)) {
+        if (found != std::string::npos && (containsSymbol(word)|| word.length() == keywords[i].length())) {
             if (found == 0) {
                 keyword = word.substr(found, keywords[i].length());
                 handleKeyWord(file, keyword);
@@ -140,7 +170,7 @@ void handleWord(std::string* file, std::string word) {
                     handleOtherWord(file, otherWord);
                 }
             }
-            return; 
+            return;
         }
     }
     handleOtherWord(file, otherWord);
