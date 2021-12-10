@@ -1,7 +1,7 @@
 # CPSC323_FinalProject
 
 ### Part I.(30 points) 
-##### Create the following text file: “finalp1.txt”
+#### Create the following text file: “finalp1.txt”
  ```
  1.            program  f2021;
  2.            ** This program computes and prints the value
@@ -21,10 +21,10 @@
 16.           end.
 ```
 
-##### Apply the following rules to this file and copy the new version in file “finalp2.txt”
-##### a.    Any line/s or part of a line that begins with ** and ends with ** is considered as a comment line (i.e. lines #2,3,5, 11,13,15), remove them
-##### b.    Any blank lines must be removed (i.e. line #12)
-##### c.    Extra spaces in each line must be removed, Leave one space before and one after each token (example: line 8: a1 = 3 ; )
+#### Apply the following rules to this file and copy the new version in file “finalp2.txt”
+a.    Any line/s or part of a line that begins with ** and ends with ** is considered as a comment line (i.e. lines #2,3,5, 11,13,15), remove them
+b.    Any blank lines must be removed (i.e. line #12)
+c.    Extra spaces in each line must be removed, Leave one space before and one after each token (example: line 8: a1 = 3 ; )
 ```
 The “finalp2.txt” should look like this
   1.           program  f2021 ;
@@ -40,7 +40,7 @@ The “finalp2.txt” should look like this
 10.           end.
 ```
 ### Part II (50 points)
-##### Use the following grammar ( the part in RED color is the grammar of algebraic expression. You used this grammar for project 10 and 11 where E is <expr>, T is <term>, and F is <factor> )
+#### Use the following grammar ( the part in RED color is the grammar of algebraic expression. You used this grammar for project 10 and 11 where E is <expr>, T is <term>, and F is <factor> )
 ```
   <prog>           -->    program   <identifier>; var  <dec-list>  begin  <stat-list> end.
   <identifier>     -->    <letter>{<letter>|<digit>}
@@ -78,10 +78,10 @@ to determine whether the program in part I is accepted or not. Your program shou
           (                  Left parentheses is missing
           )                 Right parentheses is missing 
          If  the write spells wrong, issue an error message 
-##### Output : Either one of the above messages or No error/ Some errors without error messages
+#### Output : Either one of the above messages or No error/ Some errors without error messages
 
 ### Part III (20 points)
-##### If there are no ERRORS, translate the program to a high-level language: C++, C#, Python, or Java. Run the program to display the same output. This is the C++ version of the program in part I
+#### If there are no ERRORS, translate the program to a high-level language: C++, C#, Python, or Java. Run the program to display the same output. This is the C++ version of the program in part I
    
     #include  <iostream>
       using namespace  std;
