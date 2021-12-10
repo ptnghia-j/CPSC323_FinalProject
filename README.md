@@ -1,6 +1,6 @@
 # CPSC323_FinalProject
 
-### Part I.(30 points) 
+### Part I (30 points) 
 #### Create the following text file: “finalp1.txt”
  ```
  1.            program  f2021;
