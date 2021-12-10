@@ -91,9 +91,9 @@ to determine whether the program in part I is accepted or not. Your program shou
            a1 = 3 ;
            b2a = 4 ;
            wc = 5 ;
-           cou<<wc ;  
+           cout << wc ;  
            ba12 = a1 * (b2a + 2 * wc ) ;
-           cout<< “value=” <<ba12<<endl;
+           cout << “value=” <<ba12<<endl;
            return 0;
       }
    
