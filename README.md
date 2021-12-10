@@ -17,7 +17,7 @@
 12.
 13.                 ** compute the value of the expression **
 14.                 ba12 = a1 * ( b2a + 2 * wc)          ;
-15.                 write ( “value=”,          ba12   ) ;  ** print the value of ba12 **
+15.                 write ( "value=",          ba12   ) ;  ** print the value of ba12 **
 16.           end.
 ```
 
@@ -36,7 +36,7 @@ The “finalp2.txt” should look like this
   7.           wc = 5 ;
   8.           write (wc ) ;
   8.           ba12 = a1 * ( b2a + 2 * wc) ;
-  9.           write ( “value=” , ba12 ) ;  
+  9.           write ( "value=" , ba12 ) ;  
 10.           end.
 ```
 ### Part II (50 points)
@@ -93,7 +93,7 @@ to determine whether the program in part I is accepted or not. Your program shou
            wc = 5 ;
            cout << wc ;  
            ba12 = a1 * (b2a + 2 * wc ) ;
-           cout << “value=” <<ba12<<endl;
+           cout << "value=" << ba12 << endl;
            return 0;
       }
    
