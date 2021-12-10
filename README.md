@@ -22,9 +22,9 @@
 ```
 
 #### Apply the following rules to this file and copy the new version in file “finalp2.txt”
-a.    Any line/s or part of a line that begins with ** and ends with ** is considered as a comment line (i.e. lines #2,3,5, 11,13,15), remove them <\br>
-b.    Any blank lines must be removed (i.e. line #12) <\br>
-c.    Extra spaces in each line must be removed, Leave one space before and one after each token (example: line 8: a1 = 3 ; ) <\br>
+a.    Any line/s or part of a line that begins with ** and ends with ** is considered as a comment line (i.e. lines #2,3,5, 11,13,15), remove them </br>
+b.    Any blank lines must be removed (i.e. line #12) </br>
+c.    Extra spaces in each line must be removed, Leave one space before and one after each token (example: line 8: a1 = 3 ; ) </br>
 ```
 The “finalp2.txt” should look like this
   1.           program  f2021 ;
